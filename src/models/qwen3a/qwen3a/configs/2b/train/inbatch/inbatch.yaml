@@ -1,0 +1,111 @@
+data_config:
+  enable_query_instruct: true
+  hard_neg_num: 0
+  image_size: 224, 224
+  in_batch_neg_num: 0
+  max_image_size: 224
+  max_text_length: 20000
+  max_token_length: 10000
+  query_instruct_path: instructions/query_instructions.tsv
+  returns:
+    hashed_p_did: true
+  shuffle_cand: true
+  train_cand_pool_path: /data/M-BEIR/sub_MBEIR/cand_pool/global/mbeir_union_train_cand_pool.jsonl
+  train_query_data_path: /data/M-BEIR/sub_MBEIR/query/union_train/mbeir_union_sub_train.jsonl
+  val_cand_pool_path: /data/M-BEIR/cand_pool/global/mbeir_union_val_cand_pool.jsonl
+  val_query_data_path: /data/M-BEIR/query/union_val/mbeir_union_val.jsonl
+
+dataloader_config:
+  num_workers: 2
+  train_batch_size: 64
+  valid_batch_size: 64
+
+dist_config:
+  dist_url: env://
+
+evaluator:
+  enable_eval: false
+  enable_retrieval_eval: false
+  eval_freq: 3              # Epoch-level evaluation frequency
+  eval_steps: 100          # Step-level evaluation frequency (every N steps; 0 to disable)
+  print_freq: 10
+  retrieval_eval_k:
+  - 1
+  - 5
+  - 10
+  retrieval_eval_steps: 500
+
+experiment:
+  description: ${model.name} ${model.size} ${experiment.instruct_status} ${experiment.exp_name}
+  exp_name: InBatch
+  instruct_status: Instruct
+  path_suffix: ${model.short_name}/${model.size}/${experiment.instruct_status}/${experiment.exp_name}/
+
+logger_config:
+  logger_out_dir: logger/${experiment.path_suffix}
+  logger_out_file_name: train.log
+
+model:
+  name: Qwen3VLEmbedder
+  max_visual_pixels: 501760  # 原值可能是 1003520，减半测试
+  # attn_implementation: sdpa  # 绝对不能是 flash_attention_2
+  ckpt_config:
+    ckpt_dir: checkpoint/${experiment.path_suffix}
+    ckpt_name: qwen3vl_latest.pth
+    pretrained_url: /data/Qwen3-VL-Embedding/models/Qwen3-VL-Embedding-2B
+    resume_training: false
+
+  mbeir_task_label: retrieval
+  mbeir_max_text_length: 15000
+
+  # Contrastive learning
+  temperature: 0.07
+  step_weight_start: 0.4     # Progressive InfoNCE: w_0
+  step_weight_end: 1.0       # Progressive InfoNCE: w_K
+
+  # Multi-step reasoning supervision (legacy keys kept for compatibility)
+  lambda_ds: 1.0
+  gamma_ds: 0.8
+  lambda_prog: 10
+  progressive_margin: 0.02
+  debug_mode: false       # Enable detailed debug logs in training
+  use_recursive_embedding_reasoning: true  # 递归 embedding reasoning（新方案）
+
+  # Reason step config
+  num_thought_tokens: 5              # K=5（当前实现中 K 由该字段驱动）
+  mbeir_num_thought_tokens: 5        # Eval/encode 中 query 也使用同样的 K
+  reason_steps: 5                    # 兼容字段（日志/旧逻辑）
+  enable_final_token: true           # true: append/use <final>; false: disable final token fully
+  symmetric_query_candidate_encoding: false  # true: query/candidate 都使用相同 TT+FT 编码
+  semantic_init_token: "."           # Optional semantic init token
+  skip_thought_init: false           # Set true when loading from checkpoint
+
+  # Model init
+  original_model_name: /data/Qwen3-VL-Embedding/models/Qwen3-VL-Embedding-2B
+  attn_implementation: sdpa
+
+  short_name: Qwen3VL
+  size: 2b
+
+seed: 42
+
+trainer_config:
+  gradient_accumulation_steps: 64
+  init_lr: 1e-4
+  special_token_lr: 1e-3  # 为特殊 token 设置高于 LoRA (这里提高 10 倍) 的学习率
+  num_train_epochs: 3
+  print_freq: 5
+  debug_mode: true        # 打开训练阶段 debug
+  debug_print_freq: 1     # Debug print interval (in iterations / steps)
+  debug_max_text_chars: 12000
+  debug_token_preview_len: 32
+  weight_decay: 0.05
+  save_steps: 50
+  save_total_limit: 5
+  eval_steps: 100         # Override evaluator.eval_steps if set (0 means use evaluator.eval_steps)
+
+swanlab_config:
+  enabled: true
+  project: qwen3vl-training
+  experiment_name: ${experiment.description}
+  mode: cloud

@@ -1,0 +1,234 @@
+{
+  "tasks": [
+    "visualnews_task3",
+    "mscoco_task3",
+    "fashion200k_task3",
+    "oven_task6",
+    "infoseek_task6"
+  ],
+  "selected": {
+    "visualnews_task3": [
+      {
+        "rank": 1,
+        "qid": "0:489",
+        "query_img_path": "mbeir_images/visualnews_images/washington_post/images/0011/287.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 2,
+        "qid": "0:17566",
+        "query_img_path": "mbeir_images/visualnews_images/guardian/images/0081/722.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 3,
+        "qid": "0:18462",
+        "query_img_path": "mbeir_images/visualnews_images/guardian/images/0635/128.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 4,
+        "qid": "0:22098",
+        "query_img_path": "mbeir_images/visualnews_images/bbc/images/0156/915.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 5,
+        "qid": "0:29800",
+        "query_img_path": "mbeir_images/visualnews_images/bbc/images/0185/292.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 6,
+        "qid": "0:38792",
+        "query_img_path": "mbeir_images/visualnews_images/usa_today/images/0166/904.jpg",
+        "query_txt": null
+      }
+    ],
+    "mscoco_task3": [
+      {
+        "rank": 1,
+        "qid": "9:9620",
+        "query_img_path": "mbeir_images/mscoco_images/val2014/COCO_val2014_000000219657.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 2,
+        "qid": "9:15895",
+        "query_img_path": "mbeir_images/mscoco_images/val2014/COCO_val2014_000000371945.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 3,
+        "qid": "9:16921",
+        "query_img_path": "mbeir_images/mscoco_images/val2014/COCO_val2014_000000103491.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 4,
+        "qid": "9:17800",
+        "query_img_path": "mbeir_images/mscoco_images/val2014/COCO_val2014_000000112394.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 5,
+        "qid": "9:17736",
+        "query_img_path": "mbeir_images/mscoco_images/val2014/COCO_val2014_000000339676.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 6,
+        "qid": "9:9896",
+        "query_img_path": "mbeir_images/mscoco_images/val2014/COCO_val2014_000000421072.jpg",
+        "query_txt": null
+      }
+    ],
+    "fashion200k_task3": [
+      {
+        "rank": 1,
+        "qid": "1:17487",
+        "query_img_path": "mbeir_images/fashion200k_images/pants/cropped_pants/90282865/90282865_0.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 2,
+        "qid": "1:18994",
+        "query_img_path": "mbeir_images/fashion200k_images/pants/leggings/90866637/90866637_0.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 3,
+        "qid": "1:13179",
+        "query_img_path": "mbeir_images/fashion200k_images/jackets/leather_jackets/91338573/91338573_0.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 4,
+        "qid": "1:598",
+        "query_img_path": "mbeir_images/fashion200k_images/dresses/casual_and_day_dresses/91352760/91352760_1.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 5,
+        "qid": "1:10813",
+        "query_img_path": "mbeir_images/fashion200k_images/jackets/waistcoats_and_gilets/90746120/90746120_0.jpg",
+        "query_txt": null
+      },
+      {
+        "rank": 6,
+        "qid": "1:8686",
+        "query_img_path": "mbeir_images/fashion200k_images/jackets/casual_jackets/90794523/90794523_9.jpg",
+        "query_txt": null
+      }
+    ],
+    "oven_task6": [
+      {
+        "rank": 1,
+        "qid": "5:19671",
+        "query_img_path": "mbeir_images/oven_images/04/oven_04964114.jpg",
+        "query_txt": "What is the main object?"
+      },
+      {
+        "rank": 2,
+        "qid": "5:31331",
+        "query_img_path": "mbeir_images/oven_images/04/oven_04975774.jpg",
+        "query_txt": "Which category of animal is shown in the image?"
+      },
+      {
+        "rank": 3,
+        "qid": "5:127302",
+        "query_img_path": "mbeir_images/oven_images/04/oven_04935936.jpg",
+        "query_txt": "What is this applianced commonly used for?"
+      },
+      {
+        "rank": 4,
+        "qid": "5:33865",
+        "query_img_path": "mbeir_images/oven_images/04/oven_04978308.jpg",
+        "query_txt": "Which type of animal is depicted in the image?"
+      },
+      {
+        "rank": 5,
+        "qid": "5:5498",
+        "query_img_path": "mbeir_images/oven_images/04/oven_04950015.jpg",
+        "query_txt": "What is this object?"
+      },
+      {
+        "rank": 6,
+        "qid": "5:49440",
+        "query_img_path": "mbeir_images/oven_images/04/oven_04993883.jpg",
+        "query_txt": "What is the main object?"
+      }
+    ],
+    "infoseek_task6": [
+      {
+        "rank": 1,
+        "qid": "6:35134",
+        "query_img_path": "mbeir_images/oven_images/05/oven_05013614.jpg",
+        "query_txt": "Who commissioned this facility?"
+      },
+      {
+        "rank": 2,
+        "qid": "6:6257",
+        "query_img_path": "mbeir_images/oven_images/04/oven_04958286.jpg",
+        "query_txt": "Which city or region does this park locate in?"
+      },
+      {
+        "rank": 3,
+        "qid": "6:31105",
+        "query_img_path": "mbeir_images/oven_images/05/oven_05013617.jpg",
+        "query_txt": "Who commissioned this facility?"
+      },
+      {
+        "rank": 4,
+        "qid": "6:14774",
+        "query_img_path": "mbeir_images/oven_images/05/oven_05051437.jpg",
+        "query_txt": "What is the closest upper taxonomy of this fish?"
+      },
+      {
+        "rank": 5,
+        "qid": "6:5807",
+        "query_img_path": "mbeir_images/oven_images/05/oven_05002117.jpg",
+        "query_txt": "What is the source that produces this food?"
+      },
+      {
+        "rank": 6,
+        "qid": "6:54798",
+        "query_img_path": "mbeir_images/oven_images/05/oven_05015419.jpg",
+        "query_txt": "Which building or structure has been replaced by the building in the image?"
+      }
+    ]
+  },
+  "outputs": [
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/visualnews_task3_top1_0_489__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/visualnews_task3_top2_0_17566__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/visualnews_task3_top3_0_18462__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/visualnews_task3_top4_0_22098__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/visualnews_task3_top5_0_29800__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/visualnews_task3_top6_0_38792__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/mscoco_task3_top1_9_9620__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/mscoco_task3_top2_9_15895__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/mscoco_task3_top3_9_16921__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/mscoco_task3_top4_9_17800__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/mscoco_task3_top5_9_17736__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/mscoco_task3_top6_9_9896__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/fashion200k_task3_top1_1_17487__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/fashion200k_task3_top2_1_18994__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/fashion200k_task3_top3_1_13179__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/fashion200k_task3_top4_1_598__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/fashion200k_task3_top5_1_10813__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/fashion200k_task3_top6_1_8686__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/oven_task6_top1_5_19671__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/oven_task6_top2_5_31331__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/oven_task6_top3_5_127302__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/oven_task6_top4_5_33865__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/oven_task6_top5_5_5498__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/oven_task6_top6_5_49440__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/infoseek_task6_top1_6_35134__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/infoseek_task6_top2_6_6257__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/infoseek_task6_top3_6_31105__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/infoseek_task6_top4_6_14774__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/infoseek_task6_top5_6_5807__2d_dynamics.png",
+    "/data/LR1/src/models/jina_v4o/analysis/output/2d_attention_dynamics2/infoseek_task6_top6_6_54798__2d_dynamics.png"
+  ],
+  "num_thought_tokens": 5
+}

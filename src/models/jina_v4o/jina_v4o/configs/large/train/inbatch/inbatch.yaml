@@ -1,0 +1,81 @@
+data_config:
+  enable_query_instruct: true
+  hard_neg_num: 0
+  image_size: 224, 224
+  in_batch_neg_num: 0
+  max_image_size: 224
+  max_text_length: 2000
+  max_token_length: 1000
+  query_instruct_path: instructions/query_instructions.tsv
+  returns:
+    hashed_p_did: true
+  shuffle_cand: true
+  train_cand_pool_path: /data/M-BEIR/sub_MBEIR/cand_pool/global/mbeir_union_train_cand_pool.jsonl
+  train_query_data_path: /data/M-BEIR/sub_MBEIR/query/union_train/mbeir_union_sub_train.jsonl
+  val_cand_pool_path: /data/M-BEIR/cand_pool/local/mbeir_mscoco_task0_val_cand_pool.jsonl
+  val_query_data_path: /data/M-BEIR/query/val/mbeir_mscoco_task0_val.jsonl
+dataloader_config:
+  num_workers: 5
+  train_batch_size: 32
+  valid_batch_size: 32
+dist_config:
+  dist_url: env://
+evaluator:
+  enable_eval: false
+  enable_retrieval_eval: false
+  eval_freq: 1
+  print_freq: 10
+  retrieval_eval_k:
+  - 1
+  - 5
+  - 10
+  retrieval_eval_steps: 500
+experiment:
+  description: ${model.name} ${model.size} ${experiment.instruct_status} ${experiment.exp_name}
+  exp_name: InBatch
+  instruct_status: Instruct
+  path_suffix: ${model.short_name}/${model.size}/${experiment.instruct_status}/${experiment.exp_name}/
+logger_config:
+  logger_out_dir: logger/${experiment.path_suffix}
+  logger_out_file_name: train.log
+model:
+  name: JinaEmbeddingsV4Model
+  ckpt_config:
+    ckpt_dir: checkpoint/${experiment.path_suffix}
+    ckpt_name: jina_v4o_latest.pth
+    pretrained_url: /data/jina-v4-local-copy
+    resume_training: false
+  # Jina V4 specific parameters
+  task_label: retrieval          # LoRA adapter task: retrieval, text-matching, code
+  temperature: 0.07              # Contrastive loss temperature
+  reason_steps: 1                # (Deprecated) Old reasoning steps, replaced by thought tokens
+  max_token_length: 1500         # Max token length for truncation (reduces memory, increases batch size)
+  
+  # Thought Token (Reasoning Anchor) configuration
+  # 思维锚点: 在 Query 后添加 K 个 <thought_i> token，每个位置都计算 loss
+  symmetric_query_candidate_encoding: false  # 新模式开关：true 时 Query/Candidate 均添加 thought token（对称编码）
+  thought_token_pooling_mode: last  # final embedding模式: last | mean_all_thought_tokens
+  num_thought_tokens: 1          # K: Number of thought tokens (0=disabled, 1/2/.../K=enabled)
+  gamma_start: 0.8               # Initial gamma for deep supervision (small = focus on final token)
+  gamma_end: 0.8                 # Final gamma for deep supervision (large = also care about intermediate)
+  deep_supervision_lambda: 1   # Lambda weight for auxiliary losses: L = L_final + λ * Σ γ^(K-i) * L_i
+  
+  embed_dim: 2048
+  image_size: 224, 224
+  short_name: jina_v4o
+  size: Large
+  tokenizer_max_length: 100
+seed: 2023
+trainer_config:
+  gradient_accumulation_steps: 64
+  init_lr: 1e-4
+  num_train_epochs: 5
+  print_freq: 5
+  weight_decay: 0.05
+  save_steps: 50               # Save checkpoint every N optimizer steps (0=disable step-level saving)
+  save_total_limit: 5          # Keep only the last N step-level checkpoints (0=keep all)
+swanlab_config:
+  enabled: true
+  project: jina-v4-training
+  experiment_name: ${experiment.description}
+  mode: cloud  # 'cloud' for online, 'local' for offline mode

@@ -1,0 +1,68 @@
+experiment:
+  description: ${model.name} ${model.size} ${experiment.instruct_status} ${experiment.exp_name}
+  exp_name: InBatch
+  instruct_status: Instruct
+  path_suffix: ${model.short_name}/${model.size}/${experiment.instruct_status}/${experiment.exp_name}/
+model:
+  name: Qwen3VLEmbedder
+  short_name: Qwen3VL
+  size: 2B
+  mbeir_num_thought_tokens: 0
+  enable_final_token: false
+retrieval_config:
+  candidate_dir_name: null
+  embed_dir_name: embed
+  index_dir_name: indices
+  qrel_dir_name: qrels
+  query_dir_name: null
+  raw_retrieval: false
+  results_dir_name: retrieval_results
+  retrieve_image_text_pairs: false
+  test_datasets_config:
+    correspond_cand_pools_name:
+    - edis_task2
+    - nights_task4
+    - fashioniq_task7
+    - cirr_task7
+    - UNION
+    - UNION
+    - UNION
+    - UNION
+    correspond_metrics_name:
+    - Recall@1, Recall@5, Recall@10
+    - Recall@1, Recall@5, Recall@10
+    - Recall@10, Recall@20, Recall@50
+    - Recall@1, Recall@5, Recall@10
+    - Recall@1, Recall@5, Recall@10
+    - Recall@1, Recall@5, Recall@10
+    - Recall@10, Recall@20, Recall@50
+    - Recall@1, Recall@5, Recall@10
+    correspond_qrels_name:
+    - edis_task2
+    - nights_task4
+    - fashioniq_task7
+    - cirr_task7
+    - edis_task2
+    - nights_task4
+    - fashioniq_task7
+    - cirr_task7
+    datasets_name:
+    - edis_task2
+    - nights_task4
+    - fashioniq_task7
+    - cirr_task7
+    - edis_task2
+    - nights_task4
+    - fashioniq_task7
+    - cirr_task7
+    enable_retrieve: true
+  train_datasets_config:
+    correspond_cand_pools_name: null
+    datasets_name: null
+    enable_retrieve: false
+  val_datasets_config:
+    correspond_cand_pools_name: null
+    correspond_qrels_name: null
+    datasets_name: null
+    enable_retrieve: false
+  write_to_tsv: true

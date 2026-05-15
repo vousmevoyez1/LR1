@@ -1,0 +1,27 @@
+experiment:
+  instruct_status: Instruct
+  path_suffix: Qwen3VL/2B/Instruct/InBatch/
+index_config:
+  cand_pools_config:
+    cand_pools_name_to_idx:
+    - mscoco_task0_test
+    - mscoco_task3_test
+    - UNION
+    enable_idx: true
+  embed_dir_name: embed
+  faiss_config:
+    dim: 2048
+    idx_type: Flat
+    metric: METRIC_INNER_PRODUCT
+  index_dir_name: indices
+mbeir_data_dir: /data/M-BEIR
+model:
+  mbeir_max_text_length: 1500
+  mbeir_task_label: retrieval
+  mbeir_num_thought_tokens: 0
+  enable_final_token: false
+  name: Qwen3VLEmbedder
+  original_model_name: /data/Qwen3-VL-Embedding/models/Qwen3-VL-Embedding-2B
+  short_name: Qwen3VL
+  size: 2B
+uniir_dir: /data/LR1

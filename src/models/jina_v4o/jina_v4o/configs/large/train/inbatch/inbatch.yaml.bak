@@ -1,0 +1,89 @@
+# Train BLIPFeatureFusion model on MBEIR dataset
+# <-- Important! Change this for each experiment.
+experiment:
+    instruct_status: "Instruct"
+    exp_name: "InBatch"
+    description: "${model.name} ${model.size} ${experiment.instruct_status} ${experiment.exp_name}"
+    path_suffix: "${model.short_name}/${model.size}/${experiment.instruct_status}/${experiment.exp_name}/"
+# Model settings
+model:
+    name: "JinaEmbeddingsV4"
+    short_name: "jina_v4t"
+    size: "Large"
+
+    embed_dim: 2048
+    image_size: 224, 224
+    ### 负样本记忆库大小。
+	# •	需要远大于全局 batch，以保证负样本的新鲜度与多样性。
+	# •	安全设定建议：queue_size ≥ 8 × (train_batch_size × NPROC)；并保证能被实现中的dequeue/enqueue步长整除（若代码有此约束）。
+	# •	57,960 看起来与验证集规模或某预设常量相关；可根据GPU 数与 batch调整：如从 8×global_batch 起步，逐步增大至显存/显存外张量允许的上限。
+    queue_size: 57960 # <-- Important! You need to adjust this value based on your num_gpus and batchsize
+    alpha: 0.4
+    tokenizer_max_length: 100
+
+    ckpt_config:
+        ckpt_dir: "checkpoint/${experiment.path_suffix}"
+        pretrained_jina_url: "/data/jina-v4-local-copy"  # 本地路径或 HuggingFace repo id
+        ckpt_name: ""
+        resume_training: False
+# WandB settings
+wandb_config:
+    enabled: False
+    experiment_name: "${experiment.description}"
+
+# Logger settings
+logger_config:
+    logger_out_dir: "logger/${experiment.path_suffix}"  # logger will be saved to uniir_dir/logger/experiment.path_suffix
+    logger_out_file_name: "train.log"  #TODO: add date to log file name
+
+# Dataset settings
+data_config:
+    image_size: 224, 224
+    hard_neg_num: 0
+    in_batch_neg_num: 0  # TODO: MOVE THIS TO MODEL Config
+    shuffle_cand: True
+    
+    ### 返回哈希化的 passage/doc id，便于缓存与去重。
+    returns:
+      hashed_p_did: True
+
+    # Relative to mbeir_data_dir
+    ### query_instruct_path：指令模板 TSV 路径（通常含多种指令版本）。
+    ### •	train_* / val_*：训练/验证的查询与候选池路径（JSONL 结构）。
+    enable_query_instruct: True
+    query_instruct_path: "instructions/query_instructions.tsv"
+
+    train_cand_pool_path: /data/M-BEIR/cand_pool/local/mbeir_mscoco_task3_test_cand_pool.jsonl
+    train_query_data_path: /data/M-BEIR/query/train/mbeir_mscoco_train.jsonl
+    val_cand_pool_path: /data/M-BEIR/cand_pool/local/mbeir_mscoco_task3_val_cand_pool.jsonl
+    val_query_data_path: /data/M-BEIR/query/val/mbeir_mscoco_task3_val.jsonl
+
+# DataLoader settings
+dataloader_config:
+    num_workers: 5
+    train_batch_size: 115   # 79051MiB / 81559MiB
+    valid_batch_size: 1035  # 57960/8/9
+
+# Trainer settings
+trainer_config:
+    gradient_accumulation_steps: 1
+    num_train_epochs: 20
+    init_lr: 1e-5
+    print_freq: 50
+    weight_decay: 0.05
+
+# Evaluator settings
+evaluator:
+    enable_eval: False
+    eval_freq: 1
+    print_freq: 10
+
+
+
+
+# Random seed
+seed: 2023
+
+# Distributed training settings
+dist_config:
+    dist_url: "env://"

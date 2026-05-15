@@ -1,0 +1,30 @@
+experiment:
+  instruct_status: Instruct
+  path_suffix: JinaV4/Large/Instruct/InBatch/
+index_config:
+  cand_pools_config:
+    cand_pools_name_to_idx:
+    - visualnews_task0
+    - mscoco_task0_test
+    - fashion200k_task0
+    - webqa_task2
+    - visualnews_task3
+    - mscoco_task3_test
+    - fashion200k_task3
+    - oven_task6
+    - infoseek_task6
+    - UNION
+    enable_idx: true
+  embed_dir_name: embed
+  faiss_config:
+    dim: 2048
+    idx_type: Flat
+    metric: METRIC_INNER_PRODUCT
+  index_dir_name: indices
+mbeir_data_dir: /data/M-BEIR/sub_MBEIR
+model:
+  name: JinaV4UniIR
+  pretrained_model_dir: /data/LR1/src/models/jina_v4/jina_v4
+  short_name: JinaV4
+  size: large
+uniir_dir: /data/LR1

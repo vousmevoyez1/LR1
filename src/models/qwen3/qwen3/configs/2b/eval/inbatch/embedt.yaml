@@ -1,0 +1,55 @@
+data_config:
+  cand_pool_dir_name: cand_pool/local
+  enable_query_instruct: true
+  image_size: 224, 224
+  query_instruct_path: instructions/query_instructions.tsv
+  shuffle_cand: true
+  test_dir_name: query/test
+  train_dir_name: query/train
+  val_dir_name: query/val
+dataloader_config:
+  batch_size: 64
+  num_workers: 4
+dist_config:
+  dist_url: env://
+embed_config:
+  cand_pools_config:
+    cand_pools_name_to_embed:
+    - mscoco_task0_test
+    - mscoco_task3_test
+    embed_union_pool: true
+    enable_embed: true
+  embed_dir_name: embed
+  test_datasets_config:
+    correspond_cand_pools_name:
+    - mscoco_task0_test
+    - mscoco_task3_test
+    datasets_name:
+    - mscoco_task0
+    - mscoco_task3
+    enable_embed: true
+  train_datasets_config:
+    correspond_cand_pools_name: null
+    datasets_name: null
+    enable_embed: false
+  use_fp16: true
+  val_datasets_config:
+    correspond_cand_pools_name: null
+    datasets_name: null
+    enable_embed: false
+experiment:
+  description: ${model.name} ${model.size} ${experiment.instruct_status} ${experiment.exp_name}
+  exp_name: InBatch
+  instruct_status: Instruct
+  path_suffix: ${model.short_name}/${model.size}/${experiment.instruct_status}/${experiment.exp_name}/
+model:
+  mbeir_max_text_length: 1500
+  mbeir_task_label: retrieval
+  mbeir_num_thought_tokens: 0
+  enable_final_token: false
+  symmetric_query_candidate_encoding: false
+  name: Qwen3VLEmbedder
+  original_model_name: /data/Qwen3-VL-Embedding/models/Qwen3-VL-Embedding-2B
+  short_name: Qwen3VL
+  size: 2B
+seed: 2026

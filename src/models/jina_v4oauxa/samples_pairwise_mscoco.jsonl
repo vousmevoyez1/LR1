@@ -1,0 +1,8 @@
+{"id":"1","text":"A man with a red helmet on a small moped on a dirt road.","image":"","prompt":""}
+{"id":"2","text":"A man with a red helmet on a small moped on a dirt road.","image":"","prompt":"query:"}
+{"id":"3","text":"A man with a red helmet on a small moped on a dirt road.","image":"","prompt":"passage:"}
+{"id":"4","text":"A man with a red helmet on a small moped on a dirt road.","image":"","prompt":"query: retrieval intent:Find me an everyday image that matches the given caption."}
+{"id":"5","text":"","image":"/data/M-BEIR/mbeir_images/mscoco_images/val2014/COCO_val2014_000000391895.jpg","prompt":""}
+{"id":"5","text":"","image":"/data/M-BEIR/mbeir_images/mscoco_images/val2014/COCO_val2014_000000391895.jpg","prompt":"query:"}
+{"id":"5","text":"","image":"/data/M-BEIR/mbeir_images/mscoco_images/val2014/COCO_val2014_000000391895.jpg","prompt":"passage:"}
+{"id":"6","text":"","image":"/data/M-BEIR/mbeir_images/mscoco_images/val2014/COCO_val2014_000000391895.jpg","prompt":"query:retrieval intent:Find an image caption describing the following everyday image."}
